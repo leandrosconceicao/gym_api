@@ -6,6 +6,7 @@ public class Treino : Base
     public ICollection<Exercicio> Exercicios { get; set; } = [];
     public required string Description { get; set; }
     public Guid AlunoId { get; set; }
+    public virtual Aluno AlunoDetail {get; set;}
 
     
 }
