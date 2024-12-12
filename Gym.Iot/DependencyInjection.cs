@@ -14,20 +14,22 @@ namespace Gym.Iot
     {
         public static void BuildInfraestructure(IHostApplicationBuilder builder)
         {
-            var connectionString = builder.Configuration.GetConnectionString("SqlConnection");
+            var connectionString = builder.Configuration.GetConnectionString("SqlConnection") ?? throw new NullReferenceException("String de conexão inválida");
 
             builder.Services.AddDbContext<ApiContext>(opts =>
                     opts.UseMySQL(connectionString, b => b.MigrationsAssembly("Gym.Repository")));
 
             builder.Services
-                .AddTransient<IEstabelecimentoRepository, EstabelecimentoRepository>()
-                .AddTransient<IUsuarioRepository, UsuarioRepository>()
-                .AddTransient<IGrupoMuscularRepository, GrupoMuscularRepository>()
-                .AddTransient<IExercicioRepository, ExercicioRepository>()
-                .AddTransient<IEstabelecimentoHandler, EstabelecimentoHandler>()
-                .AddTransient<IUsuarioHandler, UsuarioHandler>()
-                .AddTransient<IGrupoMuscularHandler, GrupoMuscularHandler>()
-                .AddTransient<IExercicioHandler, ExercicioHandler>()
+                .AddScoped<IEstabelecimentoRepository, EstabelecimentoRepository>()
+                .AddScoped<IUsuarioRepository, UsuarioRepository>()
+                .AddScoped<IGrupoMuscularRepository, GrupoMuscularRepository>()
+                .AddScoped<IExercicioRepository, ExercicioRepository>()
+                .AddScoped<ITreinoRepository, TreinoRepository>()
+                .AddScoped<IEstabelecimentoHandler, EstabelecimentoHandler>()
+                .AddScoped<IUsuarioHandler, UsuarioHandler>()
+                .AddScoped<IGrupoMuscularHandler, GrupoMuscularHandler>()
+                .AddScoped<IExercicioHandler, ExercicioHandler>()
+                .AddScoped<ITreinoHandler, TreinoHandler>()
                 ;
 
             builder.Services
@@ -35,7 +37,8 @@ namespace Gym.Iot
                     typeof(EstabelecimentoProfile).Assembly,
                     typeof(UsuarioProfile).Assembly,
                     typeof(GrupoMuscularProfile).Assembly,
-                    typeof(ExercicioProfile).Assembly
+                    typeof(ExercicioProfile).Assembly,
+                    typeof(TreinoProfile).Assembly
                 );
         }
     }
