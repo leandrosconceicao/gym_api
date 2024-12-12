@@ -13,6 +13,8 @@ namespace Gym.Domain.Profiles
             CreateMap<UsuarioCommand.CreateAluno, Aluno>();
 
             CreateMap<Instrutor, UsuarioCommand.ReadInstrutor>();
+
+            CreateMap<Aluno, UsuarioCommand.ReadAluno>();
         }
     }
 }

@@ -6,10 +6,12 @@ namespace Gym.Domain.Interfaces
     public interface IUsuarioHandler
     {
         Instrutor CreateUsuario(UsuarioCommand.CreateInstrutor command);
-
-        IApiResponse<UsuarioCommand.ReadInstrutor> ReadInstrutor(Instrutor instrutor);
-        IApiResponse<IEnumerable<UsuarioCommand.ReadInstrutor>> ReadInstrutor(IEnumerable<Instrutor> instrutor);
-
         Aluno CreateUsuario(UsuarioCommand.CreateAluno command);
+
+        IApiResponse<UsuarioCommand.ReadInstrutor> ReadUsuario(Instrutor instrutor);
+        IApiResponse<IEnumerable<UsuarioCommand.ReadInstrutor>> ReadUsuario(IEnumerable<Instrutor> instrutor);
+        IApiResponse<UsuarioCommand.ReadAluno> ReadUsuario(Aluno aluno);
+        IApiResponse<IEnumerable<UsuarioCommand.ReadAluno>> ReadUsuario(IEnumerable<Aluno> alunos);
+
     }
 }

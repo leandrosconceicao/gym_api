@@ -48,5 +48,16 @@ namespace Gym.Domain.Commands.Usuario
             [MinLength(1)]
             public required string Password { get; set; }
         }
+
+        public class ReadAluno
+        {
+            public Guid Id { get; set; }
+            public required string Name { get; set; }
+            public required Guid EstabelecimentoId { get; set; }
+            public required string Username { get; set; }
+            public DateTime CreatedAt { get; set; }
+            public DateTime UpdatedAt { get; set; }
+            public EstabelecimentoCommand.ReadEstabelecimento? EstabelecimentoDetail {get; set;}
+        }
     }
 }
