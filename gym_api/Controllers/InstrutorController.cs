@@ -9,7 +9,7 @@ using System.Net;
 
 namespace Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class InstrutorController(IUsuarioRepository repository, IUsuarioHandler handler) : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace Api.Controllers
             {
                 var values = await repository.FindAllInstrutores(estabelecimentoId, offset, limit);    
 
-                return Ok(handler.ReadInstrutor(values));
+                return Ok(handler.ReadUsuario(values));
 
             } catch (Exception)
             {
@@ -40,7 +40,7 @@ namespace Api.Controllers
                 if (instrutor == null)
                     throw new NotFoundError("Instrutor não localizado");
 
-                return Ok(handler.ReadInstrutor(instrutor));
+                return Ok(handler.ReadUsuario(instrutor));
             }
             catch (Exception) {
                 throw;
@@ -55,7 +55,7 @@ namespace Api.Controllers
             {
                 var newInstrutor = await repository.AddUsuario(handler.CreateUsuario(command));
 
-                return CreatedAtAction(nameof(FindOneById), new { id = newInstrutor.Id }, handler.ReadInstrutor(newInstrutor));
+                return CreatedAtAction(nameof(FindOneById), new { id = newInstrutor.Id }, handler.ReadUsuario(newInstrutor));
             }
             catch (Exception)
             {
