@@ -1,23 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Gym.Domain.Entities
+﻿namespace Gym.Domain.Entities
 {
-    public class Exercicio
+    public class Exercicio : EntitySimple
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
-        [Required]
+        public string Name { get; set; } = string.Empty;
         public Guid GrupoMuscularId { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime CreatedAt { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime UpdatedAt { get; set; }
-
-        public virtual GrupoMuscular? GrupoMuscularDetail {get; set;}
+        public virtual GrupoMuscular? GrupoMuscular {get; set;}
     }
 }

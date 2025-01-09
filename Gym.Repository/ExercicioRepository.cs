@@ -1,10 +1,11 @@
 using Gym.Domain.Entities;
-using Gym.Domain.Interfaces;
+using Gym.Domain.Interfaces.Repositories;
+using Gym.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gym.Repository.RepositoryContext;
 
-public class ExercicioRepository(ApiContext context) : IExercicioRepository
+public class ExercicioRepository(ApplicationDbContext context) : IExercicioRepository
 {
     public async Task<Exercicio> AddAsync(Exercicio exercicio)
     {
@@ -34,7 +35,7 @@ public class ExercicioRepository(ApiContext context) : IExercicioRepository
     public async Task<Exercicio?> FindOneAsync(int id)
     {
         return await context.Exercicios
-            .Include(exercicio => exercicio.GrupoMuscularDetail)
+            .Include(exercicio => exercicio.GrupoMuscular)
             .FirstOrDefaultAsync(exercicio => exercicio.Id == id);
     }
 }

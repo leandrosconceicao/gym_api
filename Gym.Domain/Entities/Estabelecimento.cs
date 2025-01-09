@@ -1,23 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Gym.Domain.Entities
+﻿namespace Gym.Domain.Entities
 {
-    public class Estabelecimento
+    public class Estabelecimento : Entity
     {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public string Name { get; set; } = string.Empty;
+        public Guid ProprietarioId { get; set; }
+        public Proprietario? Proprietario { get; set; }
 
-        [MaxLength(100)]
-        public required string Name { get; set; }
+        public ICollection<Aluno> Alunos { get; set; } = [];
+        public ICollection<Instrutor> Instrutores { get; set; } = [];
 
-        [MaxLength(14)]
-        public required string Cgc { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime CreatedAt { get; set; }
-        
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime UpdatedAt { get; set; }
+        public ICollection<GrupoMuscular> GruposMusculares { get; set; } = [];
     }
 }

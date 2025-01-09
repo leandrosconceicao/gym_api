@@ -417,3 +417,16 @@ gym_api/Api.EntityFrameworkCore.targets
 gym_api/Gym.Repository.csproj.EntityFrameworkCore.targets
 Api.EntityFrameworkCore.targets
 Gym.Repository.csproj.EntityFrameworkCore.targets
+Gym.Infra.Data/Migrations/20250109140150_v1.cs
+Gym.Infra.Data/Migrations/20250109140150_v1.Designer.cs
+Gym.Infra.Data/Migrations/20250109182444_v2.cs
+Gym.Infra.Data/Migrations/20250109182444_v2.Designer.cs
+Gym.Infra.Data/Migrations/20250109182700_v3.cs
+Gym.Infra.Data/Migrations/20250109182700_v3.Designer.cs
+Gym.Infra.Data/Migrations/20250109194645_v4.cs
+Gym.Infra.Data/Migrations/20250109194645_v4.Designer.cs
+Gym.Infra.Data/Migrations/20250109202143_v5.cs
+Gym.Infra.Data/Migrations/20250109202143_v5.Designer.cs
+Gym.Infra.Data/Migrations/20250109205510_v6.cs
+Gym.Infra.Data/Migrations/20250109205510_v6.Designer.cs
+Gym.Infra.Data/Migrations/ApplicationDbContextModelSnapshot.cs

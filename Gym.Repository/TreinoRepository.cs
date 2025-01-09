@@ -1,11 +1,11 @@
 using Gym.Domain.Entities;
-using Gym.Domain.Interfaces;
-using Gym.Repository.RepositoryContext;
+using Gym.Domain.Interfaces.Repositories;
+using Gym.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gym.Repository;
 
-public class TreinoRepository(ApiContext context) : ITreinoRepository
+public class TreinoRepository(ApplicationDbContext context) : ITreinoRepository
 {
     public async Task<Treino> AddAsync(Treino treino)
     {

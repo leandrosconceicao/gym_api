@@ -1,45 +1,47 @@
-﻿using Gym.Domain.Handlers;
-using Gym.Domain.Interfaces;
-using Gym.Domain.Profiles;
+﻿using Gym.Application.Services;
+using Gym.Domain.Interfaces.Services;
+using Gym.Domain.Interfaces.Repositories;
+using Gym.Infra.Data.Context;
 using Gym.Repository;
 using Gym.Repository.RepositoryContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Gym.Application.Interfaces.Services;
+using Gym.Application.Mappings;
 
 namespace Gym.Iot
 {
-    public class DependencyInjection
+    public static class DependencyInjection
     {
-        public static void BuildInfraestructure(IHostApplicationBuilder builder)
+        public static IServiceCollection AddInfraestructure(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = builder.Configuration.GetConnectionString("SqlConnection") ?? throw new NullReferenceException("String de conexão inválida");
+            var connection = configuration.GetConnectionString("SqlConnection") ?? throw new NullReferenceException("String de conexão inválida");
 
-            builder.Services.AddDbContext<ApiContext>(opts =>
-                    opts.UseMySQL(connectionString, b => b.MigrationsAssembly("Gym.Repository")));
+            services.AddDbContext<ApplicationDbContext>(opts => opts.UseMySQL(
+                connection, b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)    
+            ));
 
-            builder.Services
+            services
                 .AddScoped<IEstabelecimentoRepository, EstabelecimentoRepository>()
                 .AddScoped<IUsuarioRepository, UsuarioRepository>()
                 .AddScoped<IGrupoMuscularRepository, GrupoMuscularRepository>()
                 .AddScoped<IExercicioRepository, ExercicioRepository>()
                 .AddScoped<ITreinoRepository, TreinoRepository>()
-                .AddScoped<IEstabelecimentoHandler, EstabelecimentoHandler>()
-                .AddScoped<IUsuarioHandler, UsuarioHandler>()
-                .AddScoped<IGrupoMuscularHandler, GrupoMuscularHandler>()
-                .AddScoped<IExercicioHandler, ExercicioHandler>()
-                .AddScoped<ITreinoHandler, TreinoHandler>()
+                .AddScoped<IProprietarioRepository, ProprietarioRepository>()
+                .AddScoped<IEstabelecimentoService, EstabelecimentoService>()
+                .AddScoped<IUsuarioService, UsuarioService>()
+                .AddScoped<IGrupoMuscularService, GrupoMuscularService>()
+                .AddScoped<IExercicioService, ExercicioService>()
+                .AddScoped<ITreinoService, TreinoService>()
+                .AddScoped<IProprietarioService, ProprietarioService>()
                 ;
 
-            builder.Services
-                .AddAutoMapper(
-                    typeof(EstabelecimentoProfile).Assembly,
-                    typeof(UsuarioProfile).Assembly,
-                    typeof(GrupoMuscularProfile).Assembly,
-                    typeof(ExercicioProfile).Assembly,
-                    typeof(TreinoProfile).Assembly
-                );
+            services.AddAutoMapper(typeof(DomainDtoMappings).Assembly);
+
+            services.AddEndpointsApiExplorer();
+
+            return services;
         }
     }
 }

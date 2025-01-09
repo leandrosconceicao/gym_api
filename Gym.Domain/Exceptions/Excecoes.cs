@@ -19,4 +19,22 @@ namespace Gym.Domain.Exceptions
             Mensagem = message ?? "Registro duplicado";
         }
     }
+
+    public class DatabaseError : ExcecaoBase
+    {
+        public DatabaseError(string? message = null)
+        {
+            HttpStatus = HttpStatusCode.InternalServerError;
+            Mensagem = message ?? "Houve um erro no banco de Dados";
+        }
+    }
+
+    public class UnknowError : ExcecaoBase
+    {
+        public UnknowError(string message)
+        {
+            HttpStatus = HttpStatusCode.InternalServerError;
+            Mensagem = message;
+        }
+    }
 }

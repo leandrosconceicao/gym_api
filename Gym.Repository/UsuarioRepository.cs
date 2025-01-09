@@ -1,12 +1,12 @@
 ﻿using Gym.Domain.Entities;
 using Gym.Domain.Exceptions;
-using Gym.Domain.Interfaces;
-using Gym.Repository.RepositoryContext;
+using Gym.Domain.Interfaces.Repositories;
+using Gym.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 namespace Gym.Repository
 {
-    public class UsuarioRepository(ApiContext context) : IUsuarioRepository
+    public class UsuarioRepository(ApplicationDbContext context) : IUsuarioRepository
     {
         public async Task<Instrutor> AddUsuario(Instrutor instrutor)
         {
@@ -77,14 +77,14 @@ namespace Gym.Repository
         public async Task<Aluno?> FindAlunoById(Guid id)
         {
             return await context.Alunos
-                .Include(aluno => aluno.EstabelecimentoDetail)
+                .Include(aluno => aluno.Estabelecimento)
                 .FirstOrDefaultAsync(aluno => aluno.Id == id);
         }
 
         public async Task<Instrutor?> FindInstrutorById(Guid id)
         {
             return await context.Instrutores
-                .Include(instrutor => instrutor.EstabelecimentoDetail)
+                .Include(instrutor => instrutor.Estabelecimento)
                 .FirstOrDefaultAsync(instrutor => instrutor.Id == id);
         }
     }

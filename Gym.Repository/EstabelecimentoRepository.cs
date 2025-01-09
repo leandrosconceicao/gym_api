@@ -1,46 +1,77 @@
 ﻿using Gym.Domain.Entities;
-using Gym.Domain.Interfaces;
-using Gym.Repository.RepositoryContext;
+using Gym.Domain.Exceptions;
+using Gym.Domain.Interfaces.Repositories;
+using Gym.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gym.Repository
 {
-    public class EstabelecimentoRepository(ApiContext context) : IEstabelecimentoRepository
+    public class EstabelecimentoRepository(ApplicationDbContext context) : IEstabelecimentoRepository
     {
         public async Task<Estabelecimento> Add(Estabelecimento item)
         {
-            context.Estabelecimentos.Add(item);
+            try
+            {
+                context.Estabelecimentos.Add(item);
 
-            await context.SaveChangesAsync();
+                await context.SaveChangesAsync();
 
-            return item;
+                return item;
+
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseError(e.InnerException?.Message);
+            }
         }
 
         public async Task<bool> Delete(Estabelecimento data)
         {
-            context.Estabelecimentos.Remove(data);
+            try {
+                context.Estabelecimentos.Remove(data);
 
-            var deletedId = await context.SaveChangesAsync();
+                var deletedId = await context.SaveChangesAsync();
 
-            return deletedId != 0;
+                return deletedId != 0;
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseError(e.InnerException?.Message);
+            }
         }
 
         public async Task<IEnumerable<Estabelecimento>> FindAllAsync(Guid? id, int offset = 0, int limit = 100)
         {
-            var query = context.Set<Estabelecimento>().AsQueryable();
+            try
+            {
+                var query = context.Set<Estabelecimento>().AsQueryable();
 
-            if (id.HasValue) {
-                query = query.Where(e => e.Id == id);
-            }
+                if (id.HasValue) {
+                    query = query.Where(e => e.Id == id);
+                }
             
-            return await query.ToListAsync();
+                return await query.ToListAsync();
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseError(e.InnerException?.Message);
+            }
         }
 
         public async Task<Estabelecimento?> FindOneById(Guid id)
         {
-            var values = await context.Estabelecimentos.FirstOrDefaultAsync(x => x.Id == id);
+            try
+            {
+                var values = await context.Estabelecimentos
+                    .Include(data => data.Proprietario)
+                    .FirstOrDefaultAsync(x => x.Id == id);
 
-            return values;
+                return values;
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseError(e.InnerException?.Message);
+            }
         }
     }
 }

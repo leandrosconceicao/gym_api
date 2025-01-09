@@ -1,10 +1,20 @@
-﻿using Gym.Domain.Entities;
-
-namespace Gym.Domain.Entities
+﻿namespace Gym.Domain.Entities
 {
-    public abstract class Usuario : Base
+    public abstract class Usuario : EstabelecimentoEntity
     {
-        public required string Username { get; set; }
-        public required string Password { get; set; }
+        private string _username = string.Empty;
+
+        public string Username
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                _username = value.ToLower();
+            }
+        }
+        public string Password { get; set; } = string.Empty;
     }
 }

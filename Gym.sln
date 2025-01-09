@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "gym_api\Api.csproj", "{B794282F-D391-494D-969E-268AC1644953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gym.Domain", "Gym.Domain\Gym.Domain.csproj", "{562211AE-EA52-40F3-B9E0-B281B23CC926}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gym.Domain", "Gym.Domain\Gym.Domain.csproj", "{562211AE-EA52-40F3-B9E0-B281B23CC926}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gym.Iot", "Gym.Iot\Gym.Iot.csproj", "{20C47402-F1F6-4F2E-A223-74328C61FD77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gym.Iot", "Gym.Iot\Gym.Iot.csproj", "{20C47402-F1F6-4F2E-A223-74328C61FD77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gym.Repository", "Gym.Repository\Gym.Repository.csproj", "{9C12E86E-0524-4822-9D82-E23CAE683890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gym.Repository", "Gym.Repository\Gym.Repository.csproj", "{9C12E86E-0524-4822-9D82-E23CAE683890}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gym.Infra.Data", "Gym.Infra.Data\Gym.Infra.Data.csproj", "{59B24933-DB70-4ACB-9238-3CE695D6B631}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gym.Api", "Gym.Api\Gym.Api.csproj", "{BA5FE96F-E393-4504-AF05-5567F6ED4523}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gym.Application", "Gym.Application\Gym.Application.csproj", "{49A52835-8FC0-46E4-88BF-38887B31C1CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B794282F-D391-494D-969E-268AC1644953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B794282F-D391-494D-969E-268AC1644953}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B794282F-D391-494D-969E-268AC1644953}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B794282F-D391-494D-969E-268AC1644953}.Release|Any CPU.Build.0 = Release|Any CPU
 		{562211AE-EA52-40F3-B9E0-B281B23CC926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{562211AE-EA52-40F3-B9E0-B281B23CC926}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{562211AE-EA52-40F3-B9E0-B281B23CC926}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +33,18 @@ Global
 		{9C12E86E-0524-4822-9D82-E23CAE683890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C12E86E-0524-4822-9D82-E23CAE683890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C12E86E-0524-4822-9D82-E23CAE683890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59B24933-DB70-4ACB-9238-3CE695D6B631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59B24933-DB70-4ACB-9238-3CE695D6B631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59B24933-DB70-4ACB-9238-3CE695D6B631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59B24933-DB70-4ACB-9238-3CE695D6B631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA5FE96F-E393-4504-AF05-5567F6ED4523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5FE96F-E393-4504-AF05-5567F6ED4523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA5FE96F-E393-4504-AF05-5567F6ED4523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA5FE96F-E393-4504-AF05-5567F6ED4523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49A52835-8FC0-46E4-88BF-38887B31C1CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49A52835-8FC0-46E4-88BF-38887B31C1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49A52835-8FC0-46E4-88BF-38887B31C1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49A52835-8FC0-46E4-88BF-38887B31C1CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
